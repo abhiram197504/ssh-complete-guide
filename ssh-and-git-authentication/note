@@ -1,0 +1,63 @@
+1st Open git Baash 
+
+# open the correct directory 
+cd ~/ssh
+
+# check the ssh key
+ls -la 
+
+# generate the ssh key 
+ssh-keygen -t ed25519 -C "abhiram197504@gmail.com" -f id_ed25519_github_abhiram197504
+Generating public/private ed25519 key pair.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in id_ed25519_github_abhiram197504
+Your public key has been saved in id_ed25519_github_abhiram197504.pub
+The key fingerprint is:
+SHA256:C9X108nEK5Gb86Gtw1S7wruv/j5WwsPk8g4/zu6SdOc abhiram197504@gmail.com
+The key's randomart image is:
++--[ED25519 256]--+
+|            . o. |
+|         . . +oo.|
+|        . .   *oo|
+|       .     =.= |
+|      . S    =B o|
+|       . .  ooB+o|
+|        .  .==.=o|
+|            oXo+E|
+|            .@^=.|
++----[SHA256]-----+
+
+# copy the content  of public key file 
+cat id_ed25519_github_abhiram197504.pub
+
+# add the public key in github 
+Navigat to  - account settting > ssh and gpg key  crate new file 
+	Title : "Allow Abhiram Laptop to acc github"
+	key type : Authentication Key 
+	key : [paste here the copied content in previous step ]
+	
+# update the exising ssh config file 
+notepad ~/.ssh/config 
+
+# add the below content in last 
+	------------------
+	# ABHIRAM197504 github account 
+	Host github.com-abhiram197504
+		HostName github.com
+		User git 
+		IdentityFile ~/.ssh/id_ed25519_github_abhiram197504
+	
+# test your ssh connection 
+ssh -T git@github.com-abhiram197504
+Hi abhiram197504! You've successfully authenticated, but GitHub does not provide shell access.
+
+
+# how to clone 
+$ git clone git@github.com-abhiram197504:abhiram197504/terraform-ansible.git
+Cloning into 'terraform-ansible'...
+remote: Enumerating objects: 4, done.
+remote: Counting objects: 100% (4/4), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 4 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Receiving objects: 100% (4/4), done.
